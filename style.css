@@ -44,10 +44,10 @@ button, input, select, textarea { font-family: 'Inter', sans-serif; }
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 #loading-screen.hidden { opacity: 0; visibility: hidden; }
-.loader-logo { text-align: center; color: white; }
+.loader-logo { text-align: center; color: white; padding: 0 20px; }
 .loader-logo h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
 .loader-logo p { opacity: 0.8; font-size: .95rem; margin-bottom: 30px; }
-.loader-bar { width: 550px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; overflow: hidden; }
+.loader-bar { width: 85vw; max-width: 400px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; overflow: hidden; }
 .loader-bar-fill { height: 100%; background: white; border-radius: 2px; animation: loadBar 1.8s ease forwards; }
 @keyframes loadBar { from { width: 0; } to { width: 100%; } }
 .loader-spinner {
@@ -177,6 +177,9 @@ button, input, select, textarea { font-family: 'Inter', sans-serif; }
   backdrop-filter: blur(10px);
   display: flex; align-items: center; justify-content: center;
 }
+.hero-doctor-img {
+  width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;
+}
 .hero-img-placeholder {
   text-align: center; color: rgba(255,255,255,0.85);
   font-size: 8rem; opacity: 0.4;
@@ -245,20 +248,11 @@ button, input, select, textarea { font-family: 'Inter', sans-serif; }
   background: white; border-radius: var(--radius-xl); overflow: hidden;
   box-shadow: var(--shadow-lg); display: grid; grid-template-columns: 380px 1fr;
 }
-.doctor-image-side{
-    position:relative;
-    min-height:550px;
-    overflow:hidden;
-    padding:0;
+.doctor-image-side {
+  position: relative; min-height: 550px; overflow: hidden; padding: 0;
 }
-
-.doctor-photo{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.doctor-photo {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
 }
 .doctor-name-overlay {
   position: absolute; bottom: 0; left: 0; right: 0;
@@ -325,60 +319,21 @@ button, input, select, textarea { font-family: 'Inter', sans-serif; }
 .feature-text p { font-size: .83rem; color: var(--text-light); line-height: 1.6; }
 
 /* ============ VIDEO SECTION ============ */
-
 .videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;
 }
-
 .video-card {
-  background: white;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
+  background: white; border-radius: var(--radius-md); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: var(--transition);
 }
-
-.video-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
+.video-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 .video-card video {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  display: block;
-  background: #000;
+  width: 100%; height: 420px; object-fit: cover; display: block; background: #000;
 }
+.video-info { padding: 20px; }
+.video-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
+.video-info p { font-size: 0.83rem; color: var(--text-light); line-height: 1.6; }
 
-.video-info {
-  padding: 20px;
-}
-
-.video-info h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: var(--primary);
-}
-
-.video-info p {
-  font-size: 0.83rem;
-  color: var(--text-light);
-  line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .videos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .video-card video {
-    height: 200px;
-  }
-}
 /* ============ GALLERY ============ */
 .gallery-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 35px; justify-content: center; }
 .gallery-filter-btn {
@@ -386,31 +341,14 @@ button, input, select, textarea { font-family: 'Inter', sans-serif; }
   background: white; color: var(--text); font-size: .88rem; font-weight: 500; cursor: pointer; transition: var(--transition);
 }
 .gallery-filter-btn.active, .gallery-filter-btn:hover { background: var(--gradient); color: white; border-color: transparent; }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-.gallery-item {
-  height: 280px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-}
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: var(--transition);
-}
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.gallery-item { height: 280px; border-radius: var(--radius-md); overflow: hidden; position: relative; cursor: pointer; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: var(--transition); }
 .gallery-placeholder {
   background: var(--gradient); aspect-ratio: 1;
   display: flex; align-items: center; justify-content: center;
   font-size: 3rem; color: rgba(255,255,255,0.4);
 }
-
 .gallery-overlay {
   position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,109,119,0.85), transparent);
   opacity: 0; transition: var(--transition); display: flex; align-items: flex-end; padding: 18px;
@@ -512,7 +450,7 @@ button, input, select, textarea { font-family: 'Inter', sans-serif; }
 .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
 .faq-item { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid transparent; transition: var(--transition); }
 .faq-item.open { border-color: var(--accent); }
-.faq-question { display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; cursor: pointer; }
+.faq-question { display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; cursor: pointer; gap: 12px; }
 .faq-question h4 { font-size: .97rem; font-weight: 600; color: var(--text); transition: var(--transition); }
 .faq-item.open .faq-question h4 { color: var(--primary); }
 .faq-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--highlight); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.2rem; transition: var(--transition); flex-shrink: 0; }
@@ -572,7 +510,7 @@ footer {
 .footer-contact-item { display: flex; gap: 12px; margin-bottom: 14px; }
 .footer-contact-item .icon { color: var(--accent); font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
 .footer-contact-item span { font-size: .86rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 22px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 15px; flex-wrap: wrap; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 22px 0; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
 .footer-bottom p { font-size: .82rem; opacity: .6; }
 .footer-bottom-links { display: flex; gap: 20px; }
 .footer-bottom-links a { color: rgba(255,255,255,0.55); font-size: .8rem; transition: var(--transition); }
@@ -620,12 +558,9 @@ footer {
 .btn-white { background: white; color: var(--primary); }
 .btn-white:hover { background: var(--accent); }
 
-/* =========================================
-   RESPONSIVE DESIGN — FULL REPLACEMENT
-   Replace everything from the old
-   "RESPONSIVE DESIGN" block downward
-   with this entire block.
-========================================= */
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
 
 /* ---- 1100px: Large tablets / small laptops ---- */
 @media (max-width: 1100px) {
@@ -643,7 +578,6 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Prevent float cards from overflowing */
   .hero-float-card:nth-child(2) { left: -10px; }
   .hero-float-card:nth-child(3) { right: -10px; }
 }
@@ -677,8 +611,19 @@ footer {
     justify-content: center;
   }
 
-  /* Hide image panel on tablets — saves space, avoids float card overflow */
+  /* HERO IMAGE: show on tablet, centered, no float cards */
   .hero-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-image-frame {
+    max-width: 360px;
+    aspect-ratio: 3/4;
+  }
+
+  /* Hide float cards on tablet — they overflow */
+  .hero-float-card {
     display: none;
   }
 
@@ -690,7 +635,7 @@ footer {
     min-height: 400px;
   }
 
-  /* Testimonials: show 2 at a time */
+  /* Testimonials: 2 per row on tablet */
   .testimonial-card {
     flex: 0 0 calc(50% - 12px);
   }
@@ -714,7 +659,7 @@ footer {
   }
 }
 
-/* ---- 900px: Mobile nav breakpoint ---- */
+/* ---- 900px: Mobile nav ---- */
 @media (max-width: 900px) {
 
   .nav-menu {
@@ -746,7 +691,6 @@ footer {
     display: flex;
   }
 
-  /* Hide "Book Appointment" button in nav on mobile — keeps header uncluttered */
   .nav-cta .btn-book-nav {
     display: none;
   }
@@ -763,7 +707,6 @@ footer {
     padding: 0 18px;
   }
 
-  /* Hide top bar — too small to be readable */
   .top-bar {
     display: none;
   }
@@ -773,9 +716,9 @@ footer {
     height: 64px;
   }
 
-  /* --- Loading screen --- */
+  /* Loading bar fix */
   .loader-bar {
-    width: 85vw;   /* FIX: was fixed 550px — overflowed on all phones */
+    width: 85vw;
     max-width: 340px;
   }
 
@@ -788,14 +731,15 @@ footer {
     padding: 0 16px;
   }
 
-  /* --- Hero --- */
+  /* Hero */
   .hero {
     min-height: auto;
-    padding: 70px 0 60px;
+    padding: 60px 0 50px;
   }
 
   .hero-inner {
     padding: 0 18px;
+    gap: 30px;
   }
 
   .hero-title {
@@ -811,53 +755,65 @@ footer {
     gap: 12px;
   }
 
+  /* Hero image: smaller on mobile */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-image-frame {
+    max-width: 260px;
+    aspect-ratio: 3/4;
+    border-radius: 20px;
+  }
+
+  .hero-float-card {
+    display: none;
+  }
+
   .hero-stats {
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
   }
 
-  /* Shrink the star rating so it doesn't overflow */
   .hero-stat-num {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .hero-stat-label {
     font-size: 0.72rem;
   }
 
-  /* --- About --- */
+  /* About */
   .about-image-main {
     max-width: 100%;
   }
 
   .about-badge-card {
-    /* FIX: was right: -20px — caused horizontal scroll */
     right: 16px;
     bottom: 16px;
   }
 
   .about-stats {
-    /* FIX: was repeat(3,1fr) — too cramped on mobile */
     grid-template-columns: 1fr;
     gap: 14px;
   }
 
-  /* --- Services / Features --- */
+  /* Services / Features */
   .services-grid,
   .features-grid,
   .videos-grid {
     grid-template-columns: 1fr;
   }
 
-  /* --- Videos --- */
   .video-card video {
     height: 220px;
   }
 
-  /* --- Gallery --- */
+  /* Gallery */
   .gallery-grid {
-    grid-template-columns: 1fr 1fr;  /* keep 2-col on 768 */
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
 
@@ -874,7 +830,7 @@ footer {
     font-size: 0.82rem;
   }
 
-  /* --- Doctor --- */
+  /* Doctor */
   .doctor-info-side {
     padding: 24px 20px;
   }
@@ -892,12 +848,12 @@ footer {
     justify-content: center;
   }
 
-  /* --- Testimonials: 1 card at a time on mobile --- */
+  /* Testimonials: 1 at a time */
   .testimonial-card {
     flex: 0 0 100%;
   }
 
-  /* --- Appointment form --- */
+  /* Appointment */
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
@@ -911,17 +867,16 @@ footer {
     font-size: 1.7rem;
   }
 
-  /* --- Contact --- */
+  /* Contact */
   .contact-form-card {
     padding: 24px 18px;
   }
 
   .map-container iframe {
-    /* FIX: was height:300px which was fine, but ensure it's not cut off */
     height: 260px;
   }
 
-  /* --- Footer --- */
+  /* Footer */
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -938,7 +893,7 @@ footer {
     justify-content: center;
   }
 
-  /* --- Floating buttons: icon-only on mobile --- */
+  /* Floating buttons: icon-only */
   .floating-btns {
     bottom: 20px;
     right: 16px;
@@ -978,7 +933,7 @@ footer {
     font-size: 1.55rem;
   }
 
-  /* Stack hero buttons vertically */
+  /* Hero buttons stacked */
   .hero-buttons {
     flex-direction: column;
     align-items: stretch;
@@ -991,7 +946,12 @@ footer {
     padding: 14px 20px;
   }
 
-  /* Hero stats: wrap into 2x2 grid */
+  /* Hero image */
+  .hero-image-frame {
+    max-width: 220px;
+  }
+
+  /* Hero stats: 2x2 grid */
   .hero-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -999,12 +959,11 @@ footer {
     text-align: center;
   }
 
-  /* Hide the vertical dividers when in grid layout */
   .hero-stat-divider {
     display: none;
   }
 
-  /* Gallery: single column on small phones */
+  /* Gallery: single column */
   .gallery-grid {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -1014,17 +973,14 @@ footer {
     height: 220px;
   }
 
-  /* Videos */
   .video-card video {
     height: 200px;
   }
 
-  /* Doctor image slightly shorter */
   .doctor-image-side {
     min-height: 260px;
   }
 
-  /* About badge — anchor inside frame, no overflow */
   .about-badge-card {
     right: 10px;
     bottom: 10px;
@@ -1035,7 +991,6 @@ footer {
     font-size: 1.5rem;
   }
 
-  /* Appointment form */
   .appointment-form-card {
     padding: 20px 16px;
   }
@@ -1044,9 +999,8 @@ footer {
     padding: 20px 16px;
   }
 
-  /* FAQ: question text smaller so it fits */
   .faq-question {
-    padding: 18px 18px;
+    padding: 18px;
     gap: 12px;
   }
 
@@ -1062,12 +1016,10 @@ footer {
     padding: 0 18px 18px;
   }
 
-  /* Success modal */
   .success-modal {
     padding: 32px 20px;
   }
 
-  /* Footer */
   footer {
     padding-top: 50px;
   }
@@ -1078,7 +1030,6 @@ footer {
     align-items: center;
   }
 
-  /* Floating buttons even tighter */
   .floating-btns {
     bottom: 16px;
     right: 12px;
@@ -1095,7 +1046,7 @@ footer {
   }
 }
 
-/* ---- 400px: Very small phones (Galaxy A series, etc.) ---- */
+/* ---- 400px: Very small phones ---- */
 @media (max-width: 400px) {
 
   html {
@@ -1110,6 +1061,10 @@ footer {
     font-size: 1.55rem;
   }
 
+  .hero-image-frame {
+    max-width: 190px;
+  }
+
   .nav-logo-text .logo-name {
     font-size: 0.95rem;
   }
@@ -1118,7 +1073,6 @@ footer {
     font-size: 0.65rem;
   }
 
-  /* Loader */
   .loader-logo h2 {
     font-size: 1.2rem;
   }
@@ -1128,13 +1082,11 @@ footer {
     height: 40px;
   }
 
-  /* Hero badge wraps cleanly */
   .hero-badge {
     font-size: 0.75rem;
     padding: 6px 14px;
   }
 
-  /* Qual tags in doctor section */
   .qual-tag {
     font-size: 0.75rem;
     padding: 4px 10px;
@@ -1145,23 +1097,19 @@ footer {
     padding: 5px 10px;
   }
 
-  /* Gallery single col */
   .gallery-item {
     height: 200px;
   }
 
-  /* Appointment form */
   .btn-submit {
     font-size: 0.9rem;
     padding: 13px;
   }
 
-  /* Contact map */
   .map-container iframe {
     height: 220px;
   }
 
-  /* Floating buttons — smallest size */
   .float-btn {
     width: 44px;
     height: 44px;
