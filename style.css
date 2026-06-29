@@ -621,13 +621,18 @@ footer {
 .btn-white:hover { background: var(--accent); }
 
 /* =========================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN — FULL REPLACEMENT
+   Replace everything from the old
+   "RESPONSIVE DESIGN" block downward
+   with this entire block.
 ========================================= */
 
+/* ---- 1100px: Large tablets / small laptops ---- */
 @media (max-width: 1100px) {
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 35px;
   }
 
   .doctor-card {
@@ -637,8 +642,13 @@ footer {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Prevent float cards from overflowing */
+  .hero-float-card:nth-child(2) { left: -10px; }
+  .hero-float-card:nth-child(3) { right: -10px; }
 }
 
+/* ---- 992px: Tablets ---- */
 @media (max-width: 992px) {
 
   .hero-inner,
@@ -655,13 +665,19 @@ footer {
 
   .hero-subtitle {
     max-width: 100%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
   }
 
   .hero-stats {
     justify-content: center;
   }
 
+  /* Hide image panel on tablets — saves space, avoids float card overflow */
   .hero-visual {
     display: none;
   }
@@ -674,8 +690,9 @@ footer {
     min-height: 400px;
   }
 
+  /* Testimonials: show 2 at a time */
   .testimonial-card {
-    flex: 0 0 100%;
+    flex: 0 0 calc(50% - 12px);
   }
 
   .gallery-grid {
@@ -689,8 +706,15 @@ footer {
   .videos-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* About badge: keep inside bounds */
+  .about-badge-card {
+    right: 0;
+    bottom: -15px;
+  }
 }
 
+/* ---- 900px: Mobile nav breakpoint ---- */
 @media (max-width: 900px) {
 
   .nav-menu {
@@ -703,9 +727,10 @@ footer {
     background: white;
     padding: 20px;
     gap: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-height: calc(100vh - 72px);
     overflow-y: auto;
+    z-index: 999;
   }
 
   .nav-menu.open {
@@ -721,32 +746,56 @@ footer {
     display: flex;
   }
 
+  /* Hide "Book Appointment" button in nav on mobile — keeps header uncluttered */
   .nav-cta .btn-book-nav {
     display: none;
   }
 }
 
+/* ---- 768px: Mobile ---- */
 @media (max-width: 768px) {
 
   .section {
-    padding: 70px 0;
+    padding: 60px 0;
   }
 
   .container {
-    padding: 0 20px;
+    padding: 0 18px;
   }
 
+  /* Hide top bar — too small to be readable */
   .top-bar {
     display: none;
   }
 
   .nav-inner {
-    padding: 0 20px;
+    padding: 0 18px;
+    height: 64px;
   }
 
+  /* --- Loading screen --- */
+  .loader-bar {
+    width: 85vw;   /* FIX: was fixed 550px — overflowed on all phones */
+    max-width: 340px;
+  }
+
+  .loader-logo h2 {
+    font-size: 1.4rem;
+  }
+
+  .loader-logo p {
+    font-size: 0.82rem;
+    padding: 0 16px;
+  }
+
+  /* --- Hero --- */
   .hero {
     min-height: auto;
-    padding: 80px 0;
+    padding: 70px 0 60px;
+  }
+
+  .hero-inner {
+    padding: 0 18px;
   }
 
   .hero-title {
@@ -754,131 +803,373 @@ footer {
   }
 
   .hero-subtitle {
-    font-size: .95rem;
+    font-size: 0.95rem;
   }
 
   .hero-buttons {
     justify-content: center;
+    gap: 12px;
   }
 
   .hero-stats {
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Shrink the star rating so it doesn't overflow */
+  .hero-stat-num {
+    font-size: 1.1rem;
+  }
+
+  .hero-stat-label {
+    font-size: 0.72rem;
+  }
+
+  /* --- About --- */
+  .about-image-main {
+    max-width: 100%;
+  }
+
+  .about-badge-card {
+    /* FIX: was right: -20px — caused horizontal scroll */
+    right: 16px;
+    bottom: 16px;
   }
 
   .about-stats {
+    /* FIX: was repeat(3,1fr) — too cramped on mobile */
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
+  /* --- Services / Features --- */
   .services-grid,
   .features-grid,
   .videos-grid {
     grid-template-columns: 1fr;
   }
 
+  /* --- Videos --- */
   .video-card video {
-    height: 280px;
+    height: 220px;
   }
 
+  /* --- Gallery --- */
   .gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;  /* keep 2-col on 768 */
+    gap: 12px;
   }
 
   .gallery-item {
-    height: 260px;
+    height: 200px;
   }
 
+  .gallery-filters {
+    gap: 8px;
+  }
+
+  .gallery-filter-btn {
+    padding: 7px 14px;
+    font-size: 0.82rem;
+  }
+
+  /* --- Doctor --- */
   .doctor-info-side {
-    padding: 25px;
+    padding: 24px 20px;
   }
 
   .doctor-image-side {
-    min-height: 350px;
+    min-height: 320px;
   }
 
+  .doctor-btns {
+    flex-direction: column;
+  }
+
+  .doctor-btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- Testimonials: 1 card at a time on mobile --- */
+  .testimonial-card {
+    flex: 0 0 100%;
+  }
+
+  /* --- Appointment form --- */
   .form-row {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .appointment-form-card,
+  .appointment-form-card {
+    padding: 24px 18px;
+  }
+
+  .appointment-info h2 {
+    font-size: 1.7rem;
+  }
+
+  /* --- Contact --- */
   .contact-form-card {
-    padding: 25px;
+    padding: 24px 18px;
   }
 
+  .map-container iframe {
+    /* FIX: was height:300px which was fine, but ensure it's not cut off */
+    height: 260px;
+  }
+
+  /* --- Footer --- */
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 28px;
   }
 
   .footer-bottom {
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 10px;
   }
 
-  .floating-btns .float-btn span {
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  /* --- Floating buttons: icon-only on mobile --- */
+  .floating-btns {
+    bottom: 20px;
+    right: 16px;
+    gap: 10px;
+  }
+
+  .floating-btns .float-btn span:not(.float-btn-icon) {
     display: none;
   }
 
   .float-btn {
-    width: 55px;
-    height: 55px;
+    width: 52px;
+    height: 52px;
     padding: 0;
     border-radius: 50%;
     justify-content: center;
   }
 
   .float-btn-icon {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
 }
 
+/* ---- 576px: Small phones ---- */
 @media (max-width: 576px) {
 
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .hero-title {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
+    line-height: 1.2;
   }
 
   .section-title {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
 
+  /* Stack hero buttons vertically */
   .hero-buttons {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .btn-hero-primary,
   .btn-hero-secondary {
     width: 100%;
     justify-content: center;
+    padding: 14px 20px;
   }
 
+  /* Hero stats: wrap into 2x2 grid */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    text-align: center;
+  }
+
+  /* Hide the vertical dividers when in grid layout */
+  .hero-stat-divider {
+    display: none;
+  }
+
+  /* Gallery: single column on small phones */
   .gallery-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .gallery-item {
     height: 220px;
   }
 
+  /* Videos */
   .video-card video {
-    height: 220px;
+    height: 200px;
   }
 
+  /* Doctor image slightly shorter */
   .doctor-image-side {
-    min-height: 300px;
+    min-height: 260px;
   }
 
-  .loader-bar {
-    width: 90%;
+  /* About badge — anchor inside frame, no overflow */
+  .about-badge-card {
+    right: 10px;
+    bottom: 10px;
+    padding: 14px 16px;
+  }
+
+  .about-badge-num {
+    font-size: 1.5rem;
+  }
+
+  /* Appointment form */
+  .appointment-form-card {
+    padding: 20px 16px;
+  }
+
+  .contact-form-card {
+    padding: 20px 16px;
+  }
+
+  /* FAQ: question text smaller so it fits */
+  .faq-question {
+    padding: 18px 18px;
+    gap: 12px;
+  }
+
+  .faq-question h4 {
+    font-size: 0.9rem;
+  }
+
+  .faq-answer {
+    padding: 0 18px;
+  }
+
+  .faq-item.open .faq-answer {
+    padding: 0 18px 18px;
+  }
+
+  /* Success modal */
+  .success-modal {
+    padding: 32px 20px;
+  }
+
+  /* Footer */
+  footer {
+    padding-top: 50px;
+  }
+
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* Floating buttons even tighter */
+  .floating-btns {
+    bottom: 16px;
+    right: 12px;
+    gap: 8px;
+  }
+
+  .float-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .float-btn-icon {
+    font-size: 1.15rem;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* ---- 400px: Very small phones (Galaxy A series, etc.) ---- */
+@media (max-width: 400px) {
 
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 14px;
+  }
+
+  .hero-title {
+    font-size: 1.55rem;
+  }
+
+  .nav-logo-text .logo-name {
+    font-size: 0.95rem;
+  }
+
+  .nav-logo-text .logo-sub {
+    font-size: 0.65rem;
+  }
+
+  /* Loader */
+  .loader-logo h2 {
+    font-size: 1.2rem;
+  }
+
+  .loader-spinner {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Hero badge wraps cleanly */
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+  }
+
+  /* Qual tags in doctor section */
+  .qual-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  .expertise-tag {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  /* Gallery single col */
+  .gallery-item {
+    height: 200px;
+  }
+
+  /* Appointment form */
+  .btn-submit {
+    font-size: 0.9rem;
+    padding: 13px;
+  }
+
+  /* Contact map */
+  .map-container iframe {
+    height: 220px;
+  }
+
+  /* Floating buttons — smallest size */
+  .float-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
